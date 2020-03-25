@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'onboard',
     pathMatch: 'full'
   },
   {
@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./page/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'onboard',
+    loadChildren: () => import('./page/onboard/onboard.module').then( m => m.OnboardPageModule)
   }
 ];
 

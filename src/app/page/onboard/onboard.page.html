@@ -1,0 +1,21 @@
+<ion-content page-onboard fullscreen class="ion-padding" scroll-y="false">
+  <ion-label class="skip-text" color="primary" (click)="skipSlide()">
+    Passer
+  </ion-label>
+  <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
+
+      <ion-slide *ngFor="let slide of [0,1,2]">
+        <div class="slide">
+            <img class="img" [src]="data?.slidesItems?.images[slide]" alt=""/>
+            <h2 class="title">{{data?.slidesItems?.title[slide]}}</h2>
+            <p class="description">{{data?.slidesItems?.description[slide]}}</p>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <ion-fab class="fab-bottom" horizontal="center" vertical="bottom" slot="fixed" edge (click)="nextSlide()">
+      <ion-fab-button>
+        <!-- <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon> -->
+        <ion-icon md="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>
