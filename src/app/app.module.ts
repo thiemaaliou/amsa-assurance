@@ -6,8 +6,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SubscriptionService } from './services/subscription.service';
+import { Interceptor } from './services/interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,11 +20,18 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SubscriptionService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true
+    },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

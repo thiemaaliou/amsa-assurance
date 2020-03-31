@@ -55,6 +55,21 @@ export const  constData = {
         image: "../../../assets/images/payment.png",
         title: 'Formule Bronze',
         description: "Couverture medicale jusqu'a 100% "
+      },
+      {
+        image: "../../../assets/images/health.png",
+        title: 'Formule Or',
+        description: "Couverture medicale jusqu'a 100% "
+      },
+      {
+        image: "../../../assets/images/insurance.png",
+        title: 'Formule Argent',
+        description: "Couverture medicale jusqu'a 100% "
+      },
+      {
+        image: "../../../assets/images/payment.png",
+        title: 'Formule Bronze',
+        description: "Couverture medicale jusqu'a 100% "
       }
     ]
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SubscriptionService } from './services/subscription.service';
 
 @Component({
   selector: 'app-root',
@@ -13,42 +14,57 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
+      title: 'Qui sommes-nous ?',
+      url: '/about-us',
       icon: 'mail'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
+      title: 'Comment souscrire ?',
+      url: '/how-subscribe',
       icon: 'paper-plane'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
+      title: 'Souscription',
+      url: '/subscribe',
       icon: 'heart'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
+      title: 'Service après vente',
+      url: '/sav',
       icon: 'archive'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
+      title: 'Gestion sinistre',
+      url: '/disclaimer',
       icon: 'trash'
     },
     {
-      title: 'Spam',
-      url: '/folder/Spam',
+      title: 'Renouvellement',
+      url: '/renew',
+      icon: 'warning'
+    },
+    {
+      title: 'Réclamation',
+      url: '/returnment',
+      icon: 'warning'
+    },
+    {
+      title: 'Support',
+      url: '/support',
+      icon: 'warning'
+    },
+    {
+      title: 'Faq',
+      url: '/faq',
       icon: 'warning'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private subscriptionService: SubscriptionService
   ) {
     this.initializeApp();
   }
@@ -61,9 +77,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+    // const path = window.location.pathname.split('folder/')[1];
+    // if (path !== undefined) {
+    //   this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+    // }
+    this.subscriptionService.login().subscribe((resp) =>{
+      if(resp['access_token'])
+        localStorage.setItem('access_token_ma', resp['access_token']);
+    });
   }
 }
