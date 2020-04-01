@@ -9,206 +9,210 @@
 </ion-header>
 
 <ion-content class="content">
-  <form class="w-100" [formGroup]="souscriptionForm">
-    <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
-      <ion-slide>
-        <ion-grid card-section>
-          <ion-row class="title-main formule">
-            <ion-label>Veuillez choisir une formule</ion-label>
-          </ion-row>
-          <ion-row justify-content-around class="first-row">
-            <ion-col size="4" *ngFor="let item of formules">
-                <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('formule').value == item.id" (click)="selectFormule(item)">
+  <ion-grid class="main-container ion-padding">
+    <form class="w-100" [formGroup]="souscriptionForm">
+      <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
+        <ion-slide>
+          <ion-grid card-section>
+            <ion-row class="title-main formule">
+              <ion-label>Veuillez choisir une formule</ion-label>
+            </ion-row>
+            <ion-row justify-content-center class="first-row">
+              <ion-col size="4" *ngFor="let item of formules">
+                  <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('formule').value == item.id" (click)="selectFormule(item)">
+                    <ion-card-header class="ion-no-padding">
+                      <ion-item lines="none" class="ion-align-items-center">
+                        <ion-avatar class="avatar">
+                          <img [src]="assetsUrl+'images/stethoscope.png'">
+                        </ion-avatar>
+                      </ion-item>
+                    </ion-card-header>
+                    <ion-card-content class="ion-no-padding ion-text-center">
+                      <ion-label class="label">
+                         {{item?.nom}}
+                    </ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-row justify-content-around class="first-row" *ngIf="avalaibleDuration?.length > 0">
+              <ion-col size="12" class="title-label">
+                <ion-label class="text-left">Veuillez choisir une  durée</ion-label>
+              </ion-col>
+              <ion-col size="4" *ngFor="let item of avalaibleDuration">
+                <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('duree').value == item.id" (click)="selectDuration(item)">
                   <ion-card-header class="ion-no-padding">
                     <ion-item lines="none" class="ion-align-items-center">
                       <ion-avatar class="avatar">
-                        <img [src]="assetsUrl+'images/stethoscope.png'">
+                        <img [src]="assetsUrl+'images/calendar.png'">
                       </ion-avatar>
                     </ion-item>
                   </ion-card-header>
                   <ion-card-content class="ion-no-padding ion-text-center">
                     <ion-label class="label">
-                       {{item?.nom}}
+                       {{item?.duree}} {{item?.unite}}
                   </ion-label>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-          <ion-row justify-content-around class="first-row" *ngIf="avalaibleDuration?.length > 0">
-            <ion-col size="12" class="title-label">
-              <ion-label class="text-left">Veuillez choisir une  durée</ion-label>
-            </ion-col>
-            <ion-col size="4" *ngFor="let item of avalaibleDuration">
-              <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('duree').value == item.id" (click)="selectDuration(item)">
-                <ion-card-header class="ion-no-padding">
-                  <ion-item lines="none" class="ion-align-items-center">
-                    <ion-avatar class="avatar">
-                      <img [src]="assetsUrl+'images/calendar.png'">
-                    </ion-avatar>
-                  </ion-item>
-                </ion-card-header>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+            <ion-list class="bg-transparent">
+              <ion-radio-group>
+                <ion-list-header>
+                  <ion-label class="text-left">
+                    Pour qui est la souscription ?
+                  </ion-label>
+                </ion-list-header>
+
+                <ion-item lines="none" class="bg-transparent">
+                  <ion-label>Pour moi</ion-label>
+                  <ion-radio slot="start" (click)="setAssure(1)"></ion-radio>
+                </ion-item>
+
+                <ion-item lines="none" class="bg-transparent">
+                  <ion-label>Pour un tier</ion-label>
+                  <ion-radio slot="start" (click)="setAssure(2)"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </ion-grid>
+        </ion-slide>
+        <ion-slide >
+
+          <div class="slide-form w-100" formGroupName="souscripteur">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left ">
+                Souscripteur
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="number" placeholder="Numéro de téléphone" formControlName="telephone"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+               <ion-item class="custom-input" lines="none">
+                 <ion-select class="npl" placeholder="Genre" formControlName="genre">
+                   <ion-select-option value="f">Féminin</ion-select-option>
+                   <ion-select-option value="m">Masculin</ion-select-option>
+                 </ion-select>
+              </ion-item>
+          </div>
+        </ion-slide>
+        <ion-slide >
+          <div class="slide-form w-100" formGroupName="assure">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left ">
+                Assuré
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
+             </ion-item>
+             <!-- <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
+              </ion-item> -->
+              <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
+             </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+               <ion-item class="custom-input" lines="none">
+                 <ion-select class="npl" placeholder="Genre" formControlName="genre">
+                   <ion-select-option value="f">Féminin</ion-select-option>
+                   <ion-select-option value="m">Masculin</ion-select-option>
+                 </ion-select>
+              </ion-item>
+          </div>
+        </ion-slide>
+        <ion-slide >
+          <div class="slide-form w-100" formGroupName="beneficiaire">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left">
+                Bénéficiaire
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
+             </ion-item>
+             <!-- <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
+              </ion-item> -->
+              <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
+             </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+               <ion-item class="custom-input" lines="none">
+                 <ion-select class="npl" placeholder="Genre" formControlName="genre">
+                   <ion-select-option value="f">Féminin</ion-select-option>
+                   <ion-select-option value="m">Masculin</ion-select-option>
+                 </ion-select>
+              </ion-item>
+          </div>
+        </ion-slide>
+        <ion-slide >
+          <ion-grid card-section>
+            <ion-row class="title-label">
+              <ion-label>Veuillez choisir un moyen de paiment</ion-label>
+            </ion-row>
+            <ion-row justify-content-around class="first-row">
+              <ion-col size="4" *ngFor="let item of paymentMethods">
+                  <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="paymentMethod == item.id" (click)="selectPaymentMethod(item)">
+                    <ion-card-header class="ion-no-padding">
+                      <ion-item lines="none" class="ion-align-items-center">
+                        <ion-avatar class="avatar mb-0">
+                          <img [src]="item.image">
+                        </ion-avatar>
+                      </ion-item>
+                    </ion-card-header>
+                    <ion-card-content class="ion-no-padding ion-text-center">
+                      <ion-label class="label">
+                         {{item?.title}}
+                    </ion-label>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-card *ngIf="paymentMethod == 1">
                 <ion-card-content class="ion-no-padding ion-text-center">
-                  <ion-label class="label">
-                     {{item?.duree}} {{item?.unite}}
-                </ion-label>
+                  Rendez-vous à l'agence la plus proche pour régler vs frais d'assurance. Munissez-vous de votre carte nationale d'identité ou passport.
                 </ion-card-content>
               </ion-card>
-            </ion-col>
-          </ion-row>
-          <ion-list class="bg-transparent">
-            <ion-radio-group>
-              <ion-list-header>
-                <ion-label class="text-left">
-                  Pour qui est la souscription ?
-                </ion-label>
-              </ion-list-header>
+            </ion-row>
+          </ion-grid>
+        </ion-slide>
+      </ion-slides>
+      <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+    </form>
+  </ion-grid>
 
-              <ion-item lines="none" class="bg-transparent">
-                <ion-label>Pour moi</ion-label>
-                <ion-radio slot="start" (click)="setAssure(1)"></ion-radio>
-              </ion-item>
-
-              <ion-item lines="none" class="bg-transparent">
-                <ion-label>Pour un tier</ion-label>
-                <ion-radio slot="start" (click)="setAssure(2)"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
-          </ion-list>
-        </ion-grid>
-      </ion-slide>
-      <ion-slide >
-
-        <div class="slide-form w-100" formGroupName="souscripteur">
-          <ion-row class="w-100 title-label">
-            <ion-label class="text-left ">
-              Souscripteur
-            </ion-label>
-          </ion-row>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
-           </ion-item>
-           <ion-item class="custom-input" lines="none">
-            <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
-          </ion-item>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="number" placeholder="Numéro de téléphone" formControlName="telephone"></ion-input>
-           </ion-item>
-           <ion-item class="custom-input" lines="none">
-              <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
-            </ion-item>
-            <ion-item class="custom-input" lines="none">
-               <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
-             </ion-item>
-             <ion-item class="custom-input" lines="none">
-               <ion-select class="npl" placeholder="Genre" formControlName="genre">
-                 <ion-select-option value="f">Féminin</ion-select-option>
-                 <ion-select-option value="m">Masculin</ion-select-option>
-               </ion-select>
-            </ion-item>
-        </div>
-      </ion-slide>
-      <ion-slide >
-        <div class="slide-form w-100" formGroupName="assure">
-          <ion-row class="w-100 title-label">
-            <ion-label class="text-left ">
-              Assuré
-            </ion-label>
-          </ion-row>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
-           </ion-item>
-           <ion-item class="custom-input" lines="none">
-            <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
-          </ion-item>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
-           </ion-item>
-           <!-- <ion-item class="custom-input" lines="none">
-              <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
-            </ion-item> -->
-            <ion-item class="custom-input" lines="none">
-             <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
-           </ion-item>
-            <ion-item class="custom-input" lines="none">
-               <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
-             </ion-item>
-             <ion-item class="custom-input" lines="none">
-               <ion-select class="npl" placeholder="Genre" formControlName="genre">
-                 <ion-select-option value="f">Féminin</ion-select-option>
-                 <ion-select-option value="m">Masculin</ion-select-option>
-               </ion-select>
-            </ion-item>
-        </div>
-      </ion-slide>
-      <ion-slide >
-        <div class="slide-form w-100" formGroupName="beneficiaire">
-          <ion-row class="w-100 title-label">
-            <ion-label class="text-left">
-              Bénéficiaire
-            </ion-label>
-          </ion-row>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
-           </ion-item>
-           <ion-item class="custom-input" lines="none">
-            <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
-          </ion-item>
-          <ion-item class="custom-input" lines="none">
-             <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
-           </ion-item>
-           <!-- <ion-item class="custom-input" lines="none">
-              <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
-            </ion-item> -->
-            <ion-item class="custom-input" lines="none">
-             <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
-           </ion-item>
-            <ion-item class="custom-input" lines="none">
-               <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
-             </ion-item>
-             <ion-item class="custom-input" lines="none">
-               <ion-select class="npl" placeholder="Genre" formControlName="genre">
-                 <ion-select-option value="f">Féminin</ion-select-option>
-                 <ion-select-option value="m">Masculin</ion-select-option>
-               </ion-select>
-            </ion-item>
-        </div>
-      </ion-slide>
-      <ion-slide >
-        <ion-grid card-section>
-          <ion-row class="title-label">
-            <ion-label>Veuillez choisir un moyen de paiment</ion-label>
-          </ion-row>
-          <ion-row justify-content-around class="first-row">
-            <ion-col size="4" *ngFor="let item of paymentMethods">
-                <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="paymentMethod == item.id" (click)="selectPaymentMethod(item)">
-                  <ion-card-header class="ion-no-padding">
-                    <ion-item lines="none" class="ion-align-items-center">
-                      <ion-avatar class="avatar mb-0">
-                        <img [src]="item.image">
-                      </ion-avatar>
-                    </ion-item>
-                  </ion-card-header>
-                  <ion-card-content class="ion-no-padding ion-text-center">
-                    <ion-label class="label">
-                       {{item?.title}}
-                  </ion-label>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-            <ion-card *ngIf="paymentMethod == 1">
-              <ion-card-content class="ion-no-padding ion-text-center">
-                Rendez-vous à l'agence la plus proche pour régler vs frais d'assurance. Munissez-vous de votre carte nationale d'identité ou passport.
-              </ion-card-content>
-            </ion-card>
-          </ion-row>
-        </ion-grid>
-      </ion-slide>
-    </ion-slides>
-  </form>
-  <ion-fab class="fab-bottom" horizontal="center" vertical="bottom" slot="fixed" edge (click)="nextSlide()">
+  <!-- <ion-fab class="fab-bottom" horizontal="center" vertical="bottom" slot="fixed" edge >
     <ion-fab-button>
-      <!-- <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon> -->
-      <ion-icon md="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+      <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon>
+      <ion-icon slot="start" md="chevron-forward" ios="chevron-forward-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
 </ion-content>

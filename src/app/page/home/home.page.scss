@@ -23,8 +23,7 @@
     background-image: none;
   }
     [header-section]{
-        height: 35vh;
-        background: #eef1f7;
+        background: #fff;
 
         [item-user]{
             --background: none;
@@ -61,24 +60,19 @@
     }
 
     [card-section]{
-
-        .first-row{
-            .card{
-              box-shadow: none;
-              margin: 5px;
-                .avatar{
-                    margin: 0 auto;
-                    img{
-                      border-radius: 0;
-                    }
+        .card{
+          box-shadow: none;
+          margin: 5px;
+            .avatar{
+                margin: 0 auto;
+                img{
+                  border-radius: 0;
                 }
-                .label{
-                  font-size: 10px;
-                  color: #000;
-                }
+            }
+            .label{
+              font-size: 10px;
+              color: #000;
             }
         }
     }
-
-
 }

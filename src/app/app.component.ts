@@ -4,6 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SubscriptionService } from './services/subscription.service';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,7 @@ import { SubscriptionService } from './services/subscription.service';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
+  assetsUrl: string =  environment.assetsUrl;
   public appPages = [
     {
       title: 'Qui sommes-nous ?',
@@ -64,7 +67,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private subscriptionService: SubscriptionService
+    private subscriptionService: SubscriptionService,
+    private route: Router
   ) {
     this.initializeApp();
   }

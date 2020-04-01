@@ -10,6 +10,7 @@
 .custom-input{
   margin-bottom: 15px;
   border-radius: 50px;
+  border: 1px solid #cccccc7a;
 }
 .npl{
   padding-left: 0 !important;
@@ -21,6 +22,7 @@
   text-align: left !important;
   float: left;
 }
+
 .bg-transparent{
   background: transparent !important;
   --background: transparent !important;
@@ -49,4 +51,33 @@
 }
 .custom-alert .alert-button .alert-button-inner{
   justify-content: center !important;
+}
+ion-header ion-toolbar:first-of-type{
+  height: 60px !important;
+}
+ion-header{
+  z-index: 1 !important;
+}
+ion-content{
+  z-index: 10 !important;
+}
+
+ion-content{
+  background: #fd7028;
+  --background:  #fd7028;
+}
+.main-container{
+  background: #fff;
+  height: calc(100% + 60px);
+  margin-top: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  position: relative;
+}
+.next-btn button,
+:host(.button-full:not(.button-round)) .button-native {
+    box-shadow: none !important;
+    --box-shadow: none !important;
+    border-radius: 5px !important;
+
 }

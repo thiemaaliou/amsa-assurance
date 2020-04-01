@@ -1,25 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Accueil</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content page-home>
-  <ion-grid header-section>
-    <ion-header [translucent]="true">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Accueil</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-slides [options]="data?.slideHome" #homeSlide>
-        <ion-slide *ngFor="let slide of data?.formules" class="slide-one" [ngStyle]="{'background-image': 'url('+slide.image+')', 'background-repeat': 'no-repeat'}">
-          <div class="slide">
-              <h2 class="title">{{slide?.title}}</h2>
-              <p class="description">{{slide?.description}}</p>
-          </div>
-        </ion-slide>
-      </ion-slides>
-  </ion-grid>
-
-  <ion-grid card-section>
-    <ion-row justify-content-around class="first-row">
+  <ion-grid class="main-container" header-section>
+    <ion-row class="ion-padding">
+      <ion-slides [options]="data?.slideHome" #homeSlide>
+          <ion-slide *ngFor="let slide of data?.formules" class="slide-one" [ngStyle]="{'background-image': 'url('+slide.image+')', 'background-repeat': 'no-repeat'}">
+            <div class="slide">
+                <h2 class="title">{{slide?.title}}</h2>
+                <p class="description">{{slide?.description}}</p>
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+    <ion-row card-section justify-content-around class="first-row">
       <ion-col size="4" *ngFor="let item of homeMenus">
       <ion-card class="card ion-align-items-center horizontal-items" fixed >
         <ion-card-header class="ion-no-padding">
