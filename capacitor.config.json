@@ -1,0 +1,8 @@
+{
+  "appId": "com.assurance.app",
+  "appName": "microAssurance",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

@@ -1,5 +1,7 @@
 {
   "name": "microAssurance",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
