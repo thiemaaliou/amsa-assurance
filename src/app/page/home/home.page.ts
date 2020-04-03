@@ -13,47 +13,47 @@ export class HomePage implements OnInit {
     {
       title: 'Qui sommes nous ?',
       icon: '../../../assets/images/question.png',
-      path: ''
+      path: '/about-us'
     },
     {
       title: 'Comment souscrire ?',
       icon: '../../../assets/images/subscribe.png',
-      path: ''
-    },
-    {
-      title: 'Service après vente',
-      icon: '../../../assets/images/sav.png',
-      path: ''
+      path: '/how-subscribe'
     },
     {
       title: 'Souscription',
       icon: '../../../assets/images/subscribe.png',
-      path: ''
+      path: '/subscribe'
+    },
+    {
+      title: 'Service après vente',
+      icon: '../../../assets/images/sav.png',
+      path: '/sav'
     },
     {
       title: 'Gestion sinistre',
       icon: '../../../assets/images/disclaimer.png',
-      path: ''
+      path: '/disclaimer'
     },
     {
       title: 'Renouvellement',
       icon: '../../../assets/images/renew.png',
-      path: ''
+      path: '/renew'
     },
     {
       title: 'Réclamation',
       icon: '../../../assets/images/help.png',
-      path: ''
+      path: '/returnment'
     },
     {
       title: 'Support',
       icon: '../../../assets/images/support.png',
-      path: ''
+      path: '/support'
     },
     {
       title: 'Faq',
       icon: '../../../assets/images/faq.png',
-      path: ''
+      path: '/faq'
     }
 
   ];

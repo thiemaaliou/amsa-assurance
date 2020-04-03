@@ -20,7 +20,7 @@
       </ion-row>
     <ion-row card-section justify-content-around class="first-row">
       <ion-col size="4" *ngFor="let item of homeMenus">
-      <ion-card class="card ion-align-items-center horizontal-items" fixed >
+      <ion-card class="card ion-align-items-center horizontal-items" [routerLink]="item?.path" fixed >
         <ion-card-header class="ion-no-padding">
           <ion-item lines="none" no-padding no-margin class="ion-align-items-center">
             <ion-avatar class="avatar">

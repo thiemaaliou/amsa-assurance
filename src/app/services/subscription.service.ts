@@ -26,11 +26,24 @@ export class SubscriptionService {
     return this.httpClient.post(environment.baseApiUrl+'souscriptions', data).pipe(response => response);
   }
 
+  getPaymentMethods(){
+    return this.httpClient.get(environment.baseApiUrl+'moyens-de-paiement').pipe(response => response);
+  }
+
   async showErrorMessage(message){
     const toast = await this.toastController.create({
          message: message,
          duration: 4000,
          color: 'warning'
+       });
+       toast.present();
+  }
+
+  async showSuccessMessage(message){
+    const toast = await this.toastController.create({
+         message: message,
+         duration: 4000,
+         color: 'success'
        });
        toast.present();
   }

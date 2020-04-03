@@ -2,12 +2,13 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-item lines="none" class="item-user">
+        <div class="user-header">
           <ion-avatar class="avatar">
             <img [src]="assetsUrl+'images/stethoscope.png'">
           </ion-avatar>
-          <ion-label>Mirco assurance</ion-label>
-        </ion-item>
+          <ion-label class="username-title" [routerLink]="'/home'">Seydina Alioune</ion-label>
+        </div>
+
         <ion-list id="inbox-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item class="item-menu" (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="route.url == p.url">
@@ -16,13 +17,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-item  lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>Déconnexion</ion-label>
-          </ion-item>
-        </ion-list>
+        <ion-icon name="log-out" ios="log-out-outline" class="logout-icon" color="primary"></ion-icon>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

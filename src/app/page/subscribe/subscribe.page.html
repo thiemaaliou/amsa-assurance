@@ -2,13 +2,16 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button *ngIf="slideActiveIndex == 0"></ion-menu-button>
-      <ion-icon *ngIf="slideActiveIndex > 0" md="chevron-back" ios="chevron-back-outline" (click)="prevSlide()"></ion-icon>
+      <ion-icon class="back-prev-btn" *ngIf="slideActiveIndex > 0" md="chevron-back" ios="chevron-back-outline" (click)="prevSlide()"></ion-icon>
     </ion-buttons>
-    <ion-title>Souscription</ion-title>
+    <ion-title class="page-title">Souscription</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="content">
+  <div class="loader-content" *ngIf="sendingRequest">
+    <ion-spinner name="crescent" class="loader"></ion-spinner>
+  </div>
   <ion-grid class="main-container ion-padding">
     <form class="w-100" [formGroup]="souscriptionForm">
       <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
@@ -18,7 +21,7 @@
               <ion-label>Veuillez choisir une formule</ion-label>
             </ion-row>
             <ion-row justify-content-center class="first-row">
-              <ion-col size="4" *ngFor="let item of formules">
+              <ion-col size="6" *ngFor="let item of formules">
                   <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('formule').value == item.id" (click)="selectFormule(item)">
                     <ion-card-header class="ion-no-padding">
                       <ion-item lines="none" class="ion-align-items-center">
@@ -28,9 +31,10 @@
                       </ion-item>
                     </ion-card-header>
                     <ion-card-content class="ion-no-padding ion-text-center">
-                      <ion-label class="label">
+                      <ion-label class="w-100"> <b> {{item?.produit?.nom}} </b> </ion-label>
+                      <ion-label class="label w-100">
                          {{item?.nom}}
-                    </ion-label>
+                      </ion-label>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
@@ -39,7 +43,7 @@
               <ion-col size="12" class="title-label">
                 <ion-label class="text-left">Veuillez choisir une  durée</ion-label>
               </ion-col>
-              <ion-col size="4" *ngFor="let item of avalaibleDuration">
+              <ion-col size="6" *ngFor="let item of avalaibleDuration">
                 <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="souscriptionForm.get('duree').value == item.id" (click)="selectDuration(item)">
                   <ion-card-header class="ion-no-padding">
                     <ion-item lines="none" class="ion-align-items-center">
@@ -49,9 +53,10 @@
                     </ion-item>
                   </ion-card-header>
                   <ion-card-content class="ion-no-padding ion-text-center">
-                    <ion-label class="label">
-                       {{item?.duree}} {{item?.unite}}
-                  </ion-label>
+                    <ion-label class="label w-100">
+                       Durée: {{item?.duree}} {{item?.unite}}
+                     </ion-label>
+                     <ion-label> <b>Prix: {{item?.price | number}}</b> </ion-label>
                   </ion-card-content>
                 </ion-card>
               </ion-col>
@@ -75,16 +80,20 @@
                 </ion-item>
               </ion-radio-group>
             </ion-list>
+            <ion-row>
+              <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+            </ion-row>
           </ion-grid>
+
         </ion-slide>
         <ion-slide >
-
           <div class="slide-form w-100" formGroupName="souscripteur">
             <ion-row class="w-100 title-label">
               <ion-label class="text-left ">
                 Souscripteur
               </ion-label>
             </ion-row>
+
             <ion-item class="custom-input" lines="none">
                <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
              </ion-item>
@@ -94,6 +103,9 @@
             <ion-item class="custom-input" lines="none">
                <ion-input type="number" placeholder="Numéro de téléphone" formControlName="telephone"></ion-input>
              </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+            </ion-item>
              <ion-item class="custom-input" lines="none">
                 <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
               </ion-item>
@@ -106,6 +118,9 @@
                    <ion-select-option value="m">Masculin</ion-select-option>
                  </ion-select>
               </ion-item>
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+              </ion-row>
           </div>
         </ion-slide>
         <ion-slide >
@@ -139,6 +154,9 @@
                    <ion-select-option value="m">Masculin</ion-select-option>
                  </ion-select>
               </ion-item>
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+              </ion-row>
           </div>
         </ion-slide>
         <ion-slide >
@@ -172,6 +190,9 @@
                    <ion-select-option value="m">Masculin</ion-select-option>
                  </ion-select>
               </ion-item>
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+              </ion-row>
           </div>
         </ion-slide>
         <ion-slide >
@@ -179,33 +200,35 @@
             <ion-row class="title-label">
               <ion-label>Veuillez choisir un moyen de paiment</ion-label>
             </ion-row>
-            <ion-row justify-content-around class="first-row">
-              <ion-col size="4" *ngFor="let item of paymentMethods">
-                  <ion-card class="card ion-align-items-center ion-no-margin" [class.active]="paymentMethod == item.id" (click)="selectPaymentMethod(item)">
-                    <ion-card-header class="ion-no-padding">
-                      <ion-item lines="none" class="ion-align-items-center">
-                        <ion-avatar class="avatar mb-0">
-                          <img [src]="item.image">
-                        </ion-avatar>
-                      </ion-item>
-                    </ion-card-header>
-                    <ion-card-content class="ion-no-padding ion-text-center">
-                      <ion-label class="label">
-                         {{item?.title}}
-                    </ion-label>
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-              <ion-card *ngIf="paymentMethod == 1">
-                <ion-card-content class="ion-no-padding ion-text-center">
-                  Rendez-vous à l'agence la plus proche pour régler vs frais d'assurance. Munissez-vous de votre carte nationale d'identité ou passport.
-                </ion-card-content>
-              </ion-card>
+              <ion-list>
+                <ion-radio-group>
+                  <ion-item lines="none" class="payment-method-item" *ngFor="let item of paymentMethods" [class.active]="paymentMethod == item.id" (click)="selectPaymentMethod(item)">
+                    <ion-radio color="primary" slot="start"></ion-radio>
+                    <ion-label> {{item?.nom}} </ion-label>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+            <ion-row>
+              <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Valider</ion-button>
             </ion-row>
           </ion-grid>
         </ion-slide>
+        <ion-slide>
+          <ion-grid *ngIf="paymentForm?.amount > 0">
+            <form class="form-submit" action="https://dev.afripayway.com/api/v1/payment/api/initiateOnlinePayment" method="POST">
+                <input type="hidden" name="transactionCurrencyCode" value="{{paymentForm.transactionCurrencyCode}}">
+                <input type="hidden" name="terminalNumber" value="{{paymentForm.terminalNumber}}">
+                <input type="hidden" name="requestId" value="{{paymentForm.requestId}}">
+                <input type="hidden" name="amount" value="{{paymentForm.amount}}">
+                <input type="hidden" name="auth" value="{{paymentForm.auth}}">
+                <input type="hidden" name="returnUrl" value="{{paymentForm.returnUrl}}">
+                <input type="hidden" name="timestamp" value="{{paymentForm.timestamp}}">
+              <input type="submit" class="btn btn-submit-form" name="button" value="Passer au paiement" />
+            </form>
+          </ion-grid>
+        </ion-slide>
       </ion-slides>
-      <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+
     </form>
   </ion-grid>
 

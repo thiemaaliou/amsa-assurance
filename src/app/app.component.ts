@@ -19,22 +19,22 @@ export class AppComponent implements OnInit {
     {
       title: 'Qui sommes-nous ?',
       url: '/about-us',
-      icon: 'mail'
+      icon: 'business'
     },
     {
       title: 'Comment souscrire ?',
       url: '/how-subscribe',
-      icon: 'paper-plane'
+      icon: 'alert-circle'
     },
     {
       title: 'Souscription',
       url: '/subscribe',
-      icon: 'heart'
+      icon: 'document-text'
     },
     {
       title: 'Service après vente',
       url: '/sav',
-      icon: 'archive'
+      icon: 'people'
     },
     {
       title: 'Gestion sinistre',
@@ -44,22 +44,22 @@ export class AppComponent implements OnInit {
     {
       title: 'Renouvellement',
       url: '/renew',
-      icon: 'warning'
+      icon: 'speedometer'
     },
     {
       title: 'Réclamation',
       url: '/returnment',
-      icon: 'warning'
+      icon: 'thumbs-down'
     },
     {
       title: 'Support',
       url: '/support',
-      icon: 'warning'
+      icon: 'person'
     },
     {
       title: 'Faq',
       url: '/faq',
-      icon: 'warning'
+      icon: 'information-circle'
     }
   ];
 

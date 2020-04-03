@@ -1,3 +1,33 @@
+.user-header{
+  width: 110%;
+  background: #fd7028;
+  margin-top: -20px;
+  margin-left: -10px;
+  height: 70px;
+  position: relative;
+  margin-bottom: 30px;
+  .username-title{
+    position: absolute;
+    bottom: 10px;
+    left: 70px;
+    color: #fff;
+  }
+  ion-avatar{
+    position: absolute;
+    bottom: -18px;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 0px 8px #ccc;
+    background: #fff;
+    left: 10px;
+  }
+}
+.logout-icon{
+    font-size: 25px;
+    right: 24px;
+    position: absolute;
+}
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -22,9 +52,6 @@ ion-menu.md ion-note {
   padding-left: 10px;
 }
 
-ion-menu.md ion-list#inbox-list {
-  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
-}
 
 ion-menu.md ion-list#inbox-list ion-list-header {
   font-size: 22px;
