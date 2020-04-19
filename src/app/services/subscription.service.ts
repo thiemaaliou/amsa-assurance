@@ -26,8 +26,28 @@ export class SubscriptionService {
     return this.httpClient.post(environment.baseApiUrl+'souscriptions', data).pipe(response => response);
   }
 
+  saveReturnment(data){
+    return this.httpClient.post(environment.baseApiUrl+'reclamations', data).pipe(response => response);
+  }
+
+  getContract(data){
+    return this.httpClient.post(environment.baseApiUrl+'contrats/renew', data).pipe(response => response);
+  }
+
   getPaymentMethods(){
     return this.httpClient.get(environment.baseApiUrl+'moyens-de-paiement').pipe(response => response);
+  }
+
+  registerSinistre(data){
+    return this.httpClient.post(environment.baseApiUrl+'sinistres', data).pipe(response => response);
+  }
+
+  checkSinistre(data){
+    return this.httpClient.post(environment.baseApiUrl+'contrats/check-validity', data).pipe(response => response);
+  }
+
+  initiateOnlinePayment(data){
+    return this.httpClient.post('/v1/payment/api/initiateOnlinePayment', data, {responseType: 'text'}).pipe(response => response);
   }
 
   async showErrorMessage(message){

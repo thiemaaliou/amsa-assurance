@@ -1,0 +1,8 @@
+{
+    "/v1/*": {
+        "target": "https://dev.afripayway.com/api",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

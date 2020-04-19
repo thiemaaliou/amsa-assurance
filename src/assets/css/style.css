@@ -1,3 +1,13 @@
+.next-btn{
+  width: 100%;
+  bottom: 20px;
+  border-radius: 5px;
+  --box-shadow: none !important;
+  margin: 0 0 30px 0;
+  overflow: hidden;
+  height: 45px;
+  margin-top: 15px;
+}
 .fab-bottom{
   bottom: 8px;
 }
@@ -63,8 +73,8 @@ ion-content{
 }
 
 ion-content{
-  background: #fd7028;
-  --background:  #fd7028;
+  background: #5185f6;
+  --background:  #5185f6;
 }
 .main-container{
   background: #fff;
@@ -80,4 +90,26 @@ ion-content{
     --box-shadow: none !important;
     border-radius: 5px !important;
 
+}
+.coming-soon-section{
+  background: #fff;
+  width: 90%;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.coming-soon-icon{
+  background: #dbdbdb;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 50%;
+  color: #5185f6;
+  margin: -18px auto 15px auto;
+  box-shadow: 0px 0px 1px 6px #95a0b9;
+}
+.coming-soon-label{
+  margin-bottom: 35px;
+}
+.back-btn{
+  font-size: 1.8em;
 }

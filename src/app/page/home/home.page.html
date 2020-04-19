@@ -8,7 +8,7 @@
 </ion-header>
 <ion-content page-home>
   <ion-grid class="main-container" header-section>
-    <ion-row class="ion-padding">
+    <!-- <ion-row class="ion-padding">
       <ion-slides [options]="data?.slideHome" #homeSlide>
           <ion-slide *ngFor="let slide of data?.formules" class="slide-one" [ngStyle]="{'background-image': 'url('+slide.image+')', 'background-repeat': 'no-repeat'}">
             <div class="slide">
@@ -17,9 +17,9 @@
             </div>
           </ion-slide>
         </ion-slides>
-      </ion-row>
+      </ion-row> -->
     <ion-row card-section justify-content-around class="first-row">
-      <ion-col size="4" *ngFor="let item of homeMenus">
+      <ion-col size="6" *ngFor="let item of homeMenus">
       <ion-card class="card ion-align-items-center horizontal-items" [routerLink]="item?.path" fixed >
         <ion-card-header class="ion-no-padding">
           <ion-item lines="none" no-padding no-margin class="ion-align-items-center">

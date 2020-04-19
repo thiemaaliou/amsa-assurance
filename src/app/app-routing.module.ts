@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./page/disclaimer/disclaimer.module').then( m => m.DisclaimerPageModule)
   },
   {
+    path: 'follow-disclaimer',
+    loadChildren: () => import('./page/follow-disclaimer/follow-disclaimer.module').then( m => m.FollowDisclaimerPageModule)
+  },
+  {
     path: 'renew',
     loadChildren: () => import('./page/renew/renew.module').then( m => m.RenewPageModule)
   },

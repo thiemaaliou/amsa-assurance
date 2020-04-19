@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseApiUrl: 'http://51.254.219.103:8787/microassurance/api/',
   assetsUrl: './assets/',
+  paymentApiUrl: 'https://dev.afripayway.com/api/v1/payment/api/initiateOnlinePayment',
   defaultCredentials: {
      username: 'webclient',
      password: 'webclient@SUN'

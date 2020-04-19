@@ -1,9 +1,40 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>about-us</ion-title>
+    <ion-buttons slot="start" (click)="goBack()">
+      <ion-icon name="chevron-back" ios="chevron-back-outline" class="back-btn"></ion-icon>
+    </ion-buttons>
+    <ion-title>A Propos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+ <ion-grid class="main-container">
+   <ion-row>
+     <ion-icon class="coming-soon-icon" name="business" ios="business-outline"></ion-icon>
+   </ion-row>
+   <ion-row class="ion-padding">
+     <ion-col size="12"> <b>EQUIPE</b></ion-col>
+     <ion-col size="12">
+       <p>Une équipe composée de jeunes cades , ingénieurs , de moneticiens et de banquiers ;</p>
+     </ion-col>
+     <ion-col size="12">
+       <p> <b>VALEURS</b> </p>
+       <ul>
+         <li>Authenticité</li>
+         <li>Intégrité</li>
+         <li>Transparence</li>
+         <li>Résilience</li>
+         <li>Responsabilité</li>
+       </ul>
+       <p><b>VISION</b></p>
+       <ul>
+         <li>Être le plus grand hub Multi canal et transactionnel Africain.</li>
+       </ul>
+       <p><b>MISSION</b></p>
+       <ul>
+         <li>Créer de la valeur en facilitant l’interconnexion entre les différents acteurs financiers Africains à travers tous les canaux</li>
+       </ul>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
 </ion-content>

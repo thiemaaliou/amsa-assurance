@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DisclaimerPageRoutingModule } from './disclaimer-routing.module';
+import { FollowDisclaimerPageRoutingModule } from './follow-disclaimer-routing.module';
 
-import { DisclaimerPage } from './disclaimer.page';
+import { FollowDisclaimerPage } from './follow-disclaimer.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { DisclaimerPage } from './disclaimer.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    DisclaimerPageRoutingModule
+    FollowDisclaimerPageRoutingModule
   ],
-  declarations: [DisclaimerPage]
+  declarations: [FollowDisclaimerPage]
 })
-export class DisclaimerPageModule {}
+export class FollowDisclaimerPageModule {}

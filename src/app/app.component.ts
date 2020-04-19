@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   assetsUrl: string =  environment.assetsUrl;
   public appPages = [
     {
-      title: 'Qui sommes-nous ?',
-      url: '/about-us',
+      title: 'Accueil',
+      url: '/home',
       icon: 'business'
     },
     {
-      title: 'Comment souscrire ?',
-      url: '/how-subscribe',
-      icon: 'alert-circle'
+      title: 'Qui sommes-nous ?',
+      url: '/about-us',
+      icon: 'business'
     },
     {
       title: 'Souscription',
@@ -32,15 +32,21 @@ export class AppComponent implements OnInit {
       icon: 'document-text'
     },
     {
-      title: 'Service après vente',
-      url: '/sav',
-      icon: 'people'
-    },
-    {
-      title: 'Gestion sinistre',
+      title: 'Déclaration sinistre',
       url: '/disclaimer',
       icon: 'trash'
     },
+    {
+      title: 'Suivi sinistre',
+      url: '/follow-disclaimer',
+      icon: 'alert-circle'
+    },
+    // {
+    //   title: 'Service après vente',
+    //   url: '/sav',
+    //   icon: 'people'
+    // },
+
     {
       title: 'Renouvellement',
       url: '/renew',
@@ -50,11 +56,6 @@ export class AppComponent implements OnInit {
       title: 'Réclamation',
       url: '/returnment',
       icon: 'thumbs-down'
-    },
-    {
-      title: 'Support',
-      url: '/support',
-      icon: 'person'
     },
     {
       title: 'Faq',

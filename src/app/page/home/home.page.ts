@@ -11,14 +11,9 @@ import { constData } from 'src/app/helpers/constants';
 export class HomePage implements OnInit {
   homeMenus = [
     {
-      title: 'Qui sommes nous ?',
+      title: 'Qui sommes nous?',
       icon: '../../../assets/images/question.png',
       path: '/about-us'
-    },
-    {
-      title: 'Comment souscrire ?',
-      icon: '../../../assets/images/subscribe.png',
-      path: '/how-subscribe'
     },
     {
       title: 'Souscription',
@@ -26,15 +21,21 @@ export class HomePage implements OnInit {
       path: '/subscribe'
     },
     {
-      title: 'Service après vente',
-      icon: '../../../assets/images/sav.png',
-      path: '/sav'
-    },
-    {
-      title: 'Gestion sinistre',
+      title: 'Déclaration sinistre',
       icon: '../../../assets/images/disclaimer.png',
       path: '/disclaimer'
     },
+    {
+      title: 'Suivi sinistre',
+      icon: '../../../assets/images/disclaimer.png',
+      path: '/follow-disclaimer'
+    },
+    {
+      title: 'S A V',
+      icon: '../../../assets/images/sav.png',
+      path: '/sav'
+    },
+
     {
       title: 'Renouvellement',
       icon: '../../../assets/images/renew.png',
@@ -44,11 +45,6 @@ export class HomePage implements OnInit {
       title: 'Réclamation',
       icon: '../../../assets/images/help.png',
       path: '/returnment'
-    },
-    {
-      title: 'Support',
-      icon: '../../../assets/images/support.png',
-      path: '/support'
     },
     {
       title: 'Faq',

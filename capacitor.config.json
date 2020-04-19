@@ -1,6 +1,6 @@
 {
-  "appId": "com.assurance.app",
-  "appName": "microAssurance",
+  "appId": "io.ionic.starter",
+  "appName": "New Ionic App",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

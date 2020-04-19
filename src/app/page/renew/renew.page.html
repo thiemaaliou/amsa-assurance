@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>renew</ion-title>
+    <ion-buttons slot="start" (click)="goBack()">
+      <ion-icon name="chevron-back" ios="chevron-back-outline" class="back-btn"></ion-icon>
+    </ion-buttons>
+    <ion-title>Renouvellement</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid class="main-container">
+    <form class="slide-form w-100 ion-padding" [formGroup]="renewForm">
+      <ion-item class="custom-input" lines="none">
+         <ion-input type="text" placeholder="Numéro de police" formControlName="numeroPolice"></ion-input>
+       </ion-item>
+      <ion-row>
+        <ion-button class="next-btn" [disabled]="renewForm.invalid" (click)="getData()" color="primary" expand="full" >Envoyer</ion-button>
+      </ion-row>
+    </form>
+  </ion-grid>
 </ion-content>

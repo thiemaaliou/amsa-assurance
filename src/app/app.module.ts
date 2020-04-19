@@ -13,7 +13,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SubscriptionService } from './services/subscription.service';
 import { Interceptor } from './services/interceptor.service';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +30,8 @@ import { Interceptor } from './services/interceptor.service';
     StatusBar,
     SplashScreen,
     SubscriptionService,
+    InAppBrowser,
+    HTTP,
     {
       provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true
     },

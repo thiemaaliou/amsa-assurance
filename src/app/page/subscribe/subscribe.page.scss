@@ -1,3 +1,10 @@
+.badge{
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: #5185f6;
+  color: #fff;
+  margin-right: 10px;
+}
 .back-prev-btn{
   font-size: 28px;
 }
@@ -35,10 +42,16 @@
   }
   .title-main.formule{
     font-size: 14px;
+    margin: 25px 0 15px 0;
   }
 
   [card-section]{
-    .card.active{
+    .card-item{
+      box-shadow: 0px 0px 10px #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    .card-item.active{
       border: 2px solid var(--ion-color-primary);
     }
     .card{

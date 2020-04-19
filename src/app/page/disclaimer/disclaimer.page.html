@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>disclaimer</ion-title>
+    <ion-buttons slot="start" (click)="goBack()">
+      <ion-icon name="chevron-back" ios="chevron-back-outline" class="back-btn"></ion-icon>
+    </ion-buttons>
+    <ion-title>Déclaration de sinistre</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="content">
+  <ion-grid class="main-container ion-padding">
+    <form class="slide-form w-100" [formGroup]="sinistreForm">
 
+      <ion-item class="custom-input" lines="none">
+         <ion-input type="text" placeholder="Numéro de la police" formControlName="numeroPolice"></ion-input>
+       </ion-item>
+       <ion-item class="custom-input" lines="none">
+          <ion-input type="text" placeholder="Lieu" formControlName="lieu"></ion-input>
+        </ion-item>
+        <ion-item class="custom-input" lines="none">
+         <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date" formControlName="date"></ion-datetime>
+       </ion-item>
+       <ion-item class="custom-input" lines="none">
+        <ion-textarea class="npl" placeholder="Description" formControlName="description"></ion-textarea>
+      </ion-item>
+
+      <ion-row>
+        <ion-button class="next-btn" [disabled]="sinistreForm.invalid" (click)="presentAlertConfirm()" color="primary" expand="full" >Enregistrer</ion-button>
+      </ion-row>
+    </form>
+  </ion-grid>
 </ion-content>

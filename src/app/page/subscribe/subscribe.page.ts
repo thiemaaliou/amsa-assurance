@@ -5,6 +5,10 @@ import { constData } from 'src/app/helpers/constants';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SubscriptionService } from 'src/app/services/subscription.service';
 import { environment } from 'src/environments/environment';
+import * as CryptoJS from 'crypto-js';
+import {Location} from "@angular/common";
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
   selector: 'app-subscribe',
@@ -25,53 +29,58 @@ export class SubscribePage implements OnInit {
   paymentMethod: number;
   assure: number = 1;
   paymentMethods = [];
+  dateTime = Math.floor(Date.now() / 1000);
+  key = "676AC4CC226201685E89ADB0C9B4510D";
   paymentForm = {
-    timestamp: Math.floor(Date.now() / 1000),
+    timestamp: this.dateTime,
     returnUrl: environment.baseApiUrl+'payment',
-    auth: '',
-    amount: 0,
-    requestId: Math.floor(Date.now() / 1000),
-    terminalNumber: Math.floor(Date.now() / 1000) + 1,
+    auth: CryptoJS.MD5(this.key).toString(CryptoJS.enc.Hex),
+    amount: 500,
+    requestId: this.dateTime,
+    terminalNumber: 160820000101,
     transactionCurrencyCode: 'XOF'
   }
   souscriptionForm = new FormGroup({
-      duree: new FormControl(null, [Validators.required]),
-      formule: new FormControl(null, [Validators.required]),
-      canal: new FormControl(2, [Validators.required]),
-      montant: new FormControl(null, [Validators.required]),
-      souscripteur: new FormGroup({
-        prenom: new FormControl(null, [Validators.required]),
-        nom: new FormControl(null, [Validators.required]),
-        genre: new FormControl(null, [Validators.required]),
-        dateNaissance: new FormControl(null, [Validators.required]),
-        telephone: new FormControl(null, [Validators.required]),
-        numeroCni: new FormControl(null, [Validators.required]),
-        email: new FormControl(null, [Validators.required])
-      }),
-      assure: new FormGroup({
-        prenom: new FormControl(null, [Validators.required]),
-        nom: new FormControl(null, [Validators.required]),
-        dateNaissance: new FormControl(null, [Validators.required]),
-        numeroTelephone: new FormControl(null),
-        numeroCni: new FormControl(null),
-        adresse: new FormControl(null, [Validators.required]),
-        lateralite: new FormControl('droitier'),
-        genre: new FormControl(null, [Validators.required])
-      }),
-      beneficiaire: new FormGroup({
-        prenom: new FormControl(null, [Validators.required]),
-        nom: new FormControl(null, [Validators.required]),
-        dateNaissance: new FormControl(null, [Validators.required]),
-        numeroTelephone: new FormControl(null, [Validators.required]),
-        numeroCni: new FormControl(null),
-        genre: new FormControl(null, [Validators.required]),
-        adresse: new FormControl(null, [Validators.required])
-      }),
+    duree: new FormControl(null, [Validators.required]),
+    formule: new FormControl(null, [Validators.required]),
+    canal: new FormControl(1, [Validators.required]),
+    montant: new FormControl(10000, [Validators.required]),
+    souscripteur: new FormGroup({
+      prenom: new FormControl(null, [Validators.required]),
+      nom: new FormControl(null, [Validators.required]),
+      genre: new FormControl(null),
+      email: new FormControl(null, [Validators.required]),
+      dateNaissance: new FormControl(null, [Validators.required]),
+      telephone: new FormControl(null, [Validators.required]),
+      numeroCni: new FormControl(null, [Validators.required])
+    }),
+    assure: new FormGroup({
+      prenom: new FormControl(null, [Validators.required]),
+      nom: new FormControl(null, [Validators.required]),
+      dateNaissance: new FormControl(null, [Validators.required]),
+      numeroTelephone: new FormControl(null, [Validators.required]),
+      numeroCni: new FormControl(null, [Validators.required]),
+      adresse: new FormControl(null, [Validators.required]),
+      lateralite: new FormControl(null, [Validators.required]),
+      genre: new FormControl(null, [Validators.required])
+    }),
+    beneficiaire: new FormGroup({
+      prenom: new FormControl(null, [Validators.required]),
+      nom: new FormControl(null, [Validators.required]),
+      dateNaissance: new FormControl(null, [Validators.required]),
+      numeroTelephone: new FormControl(null, [Validators.required]),
+      numeroCni: new FormControl(null, [Validators.required]),
+      genre: new FormControl(null, [Validators.required]),
+      adresse: new FormControl(null, [Validators.required])
+    }),
   });
   slideActiveIndex: number = 0;
   constructor(private route: Router,
               private subscriptionService: SubscriptionService,
-              public alertController: AlertController
+              public alertController: AlertController,
+              private location: Location,
+              private appBrowser: InAppBrowser,
+              private http: HTTP
               ) {
           this.customPickerOptions = {
               buttons: [{
@@ -91,6 +100,20 @@ export class SubscribePage implements OnInit {
     this.getFormules();
     this.getDuration();
     this.getPaymentMethods();
+    this.paymentForm.returnUrl = this.location['_platformLocation'].location.host+'/success-payment';
+    this.http.setDataSerializer('json');
+    this.http.setHeader('*', 'Content-Type', 'application/json');
+
+    // this.subscriptionService.initiateOnlinePayment(this.paymentForm).subscribe((respApg) =>{
+    //   let d: any = respApg;
+    //   console.log('thiema', JSON.parse(d));
+    //    this.subscriptionService.showSuccessMessage("Inscription effectuée avec succès. Vous allez être redirigé vers la page de paiement");
+    //    setTimeout(() => {
+    //      window.open(respApg['paymentUrl'], "_blank");
+    //      const bwrser = this.appBrowser.create(respApg['paymentUrl']);
+    //      bwrser.show();
+    //    }, 4000)
+    // });
   }
 
   ngAfterViewInit(){
@@ -105,22 +128,34 @@ export class SubscribePage implements OnInit {
       data.assure == data.souscripteur;
     }
     this.sendingRequest = true;
-    console.log(data);
-    console.log(this.paymentForm);
-    this.goToNextSlide();
     this.subscriptionService.saveSouscription(data).subscribe((resp) =>{
       this.sendingRequest = false;
-      if(resp['code'] == 200){
-         this.subscriptionService.showSuccessMessage("Inscriptio effectuée avec succès. Vous allez être redirigé vers la page de paiement");
+      if(resp['responseCode'] == 200){
+        let hash = this.paymentForm.amount+resp['data'].id+'XOF'+this.key;
+        this.paymentForm.requestId = resp['data'].id;
+        this.paymentForm.auth = CryptoJS.MD5(hash).toString(CryptoJS.enc.Hex);
+        this.http.post(environment.paymentApiUrl, this.paymentForm, {})
+              .then(data => {
+                 this.subscriptionService.showSuccessMessage("Inscription effectuée avec succès. Vous allez être redirigé vers la page de paiement");
+                  let urlData = JSON.parse(data.data);
+                  setTimeout(() => {
+                    const bwrser = this.appBrowser.create(urlData['paymentUrl']);
+                    bwrser.show();
+                  }, 4000);
+              })
+              .catch(error => {
+                this.subscriptionService.showErrorMessage("Impossible de procéder au paiement pour le moment. Veuillez-vous rendre à l'agence SVP");
+              });
       }else{
         this.subscriptionService.showErrorMessage("Erreur lors de l'inscription. Veuillez réessayer SVP");
       }
-      this.paymentForm.amount = data.montant;
     }, error => {
-      this.paymentForm.amount = data.montant;
       this.sendingRequest = false;
       this.subscriptionService.showErrorMessage("Erreur lors de l'inscription. Veuillez réessayer SVP");
     });
+
+
+
   }
 
   onDateSelect(event, groupName, controlName){
@@ -156,7 +191,7 @@ export class SubscribePage implements OnInit {
 
     if(duree){
       this.avalaibleDuration = duree;
-      this.ionContent.scrollToBottom(300);
+      //this.ionContent.scrollToBottom(300);
     }
   }
   selectDuration(item){
@@ -210,11 +245,8 @@ export class SubscribePage implements OnInit {
         if(this.souscriptionForm.get('beneficiaire').invalid){
           this.subscriptionService.showErrorMessage("Veuillez remplir tous les champs SVP");
         }else{
-          this.goToNextSlide();
+          this.presentAlertConfirm();
         }
-      }else
-      if(index == 4 && this.paymentMethod > 0){
-        this.presentAlertConfirm();
       }
     });
     this.ionContent.scrollToTop(300);
