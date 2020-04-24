@@ -21,5 +21,26 @@
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom"  *ngIf="route.url != '/onboard'">
+        <ion-tab-button tab="about-us">
+          <ion-icon name="business" ios="business-outline"></ion-icon>
+          <ion-label>A propos</ion-label>
+
+        </ion-tab-button>
+
+        <ion-tab-button tab="home">
+          <ion-icon name="home" ios="home-outline"></ion-icon>
+          <ion-label>Accueil</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="faq">
+          <ion-icon name="help" ios="help-outline"></ion-icon>
+          <ion-label>Faq</ion-label>
+          <ion-badge>6</ion-badge>
+        </ion-tab-button>
+
+      </ion-tab-bar>
+    </ion-tabs>
   </ion-split-pane>
 </ion-app>

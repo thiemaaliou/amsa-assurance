@@ -1,4 +1,7 @@
 [page-onboard]{
+  body{
+    font-family: arial;
+  }
   ion-slides {
       height: 100%;
     }
@@ -9,13 +12,17 @@
 
     .swiper-slide h2 {
       margin-top: 2rem;
-      color: #fff;
+      font-family: 'Arial';
+      font-size: 2em;
+      font-weight: bolder;
+      text-align: left;
+      color: var(--ion-color-primary, #000000);
     }
 
     .swiper-slide img {
-      max-height: 50%;
-      max-width: 80%;
-      margin: 40px 0 0;
+      max-height: 80%;
+      max-width: 100%;
+      margin: 10px 0 0;
       pointer-events: none;
     }
 
@@ -24,10 +31,10 @@
     }
 
     p {
-      padding: 0 40px;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.5;
-      color: #fff;
+      text-align: left;
+      color: var(--ion-color-secondary, #000000);
     }
 
     p b {
@@ -36,5 +43,15 @@
 
     .fab-bottom{
       bottom: 8px;
+    }
+    .main-container.home{
+      margin-top: 0px;
+      .slide-form.home{
+        padding: 0 !important;
+        img{
+          margin-top: -10px !important;
+          width: 200px;
+        }
+      }
     }
 }

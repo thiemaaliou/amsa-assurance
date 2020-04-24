@@ -1,24 +1,59 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="home-header" color="primary">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Accueil</ion-title>
+    <ion-label class="username-title" >Amsa & Moi</ion-label>
+    <ion-avatar class="avatar" slot="end">
+      <img [src]="assetsUrl+'images/insurance-accident.jpg'">
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 <ion-content page-home>
+  <ion-grid class="product-slides">
+    <ion-row class="our-product">
+      <ion-col size="8" color="primary">Nos Produits</ion-col>
+      <ion-col size="4" color="secondary" class="text-right">Voir tous ></ion-col>
+    </ion-row>
+    <ion-slides pager="true" [options]="data?.slideHome">
+      <ion-slide class="p-slide" *ngFor="let item of sinsitreMenus">
+        <ion-grid>
+          <ion-row class="img-row">
+            <img [src]="item?.icon">
+          </ion-row>
+          <ion-row class="img-title">
+            <ion-label class="label ion-text-wrap">
+               {{item?.title}}
+            </ion-label>
+          </ion-row>
+        </ion-grid>
+      </ion-slide>
+   </ion-slides>
+  </ion-grid>
   <ion-grid class="main-container" header-section>
-    <!-- <ion-row class="ion-padding">
-      <ion-slides [options]="data?.slideHome" #homeSlide>
-          <ion-slide *ngFor="let slide of data?.formules" class="slide-one" [ngStyle]="{'background-image': 'url('+slide.image+')', 'background-repeat': 'no-repeat'}">
-            <div class="slide">
-                <h2 class="title">{{slide?.title}}</h2>
-                <p class="description">{{slide?.description}}</p>
-            </div>
-          </ion-slide>
-        </ion-slides>
-      </ion-row> -->
-    <ion-row card-section justify-content-around class="first-row">
+    <ion-row class="our-product">
+      <ion-col size="8" color="primary">Vos assurances</ion-col>
+      <ion-col size="4" color="secondary" class="text-right"></ion-col>
+    </ion-row>
+    <ion-row card-section justify-content-around class="first-row second">
+      <ion-col size="12" *ngFor="let item of myInsurance" class="ion-no-padding">
+        <ion-card class="card my-insurance ion-no-padding ion-no-margin" [routerLink]="item?.path" fixed *ngIf="item.type != 'main'">
+          <ion-card-header class="ion-no-padding">
+            <ion-item lines="none" class="in-no-padding">
+              <ion-avatar class="avatar" slot="start">
+                <img [src]="item?.icon">
+              </ion-avatar>
+              <ion-label class="label ion-text-wrap">
+                 <h4>{{item?.title}}</h4>
+                 <p>Date d'expiration: 22/06/2020</p>
+              </ion-label>
+              <ion-icon color="secondary" class="forward-icon" slot="end" name="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row card-section justify-content-around class="first-row">
       <ion-col size="6" *ngFor="let item of homeMenus">
       <ion-card class="card ion-align-items-center horizontal-items" [routerLink]="item?.path" fixed >
         <ion-card-header class="ion-no-padding">
@@ -31,10 +66,78 @@
         <ion-card-content class="ion-no-padding ion-text-center">
           <ion-label class="label">
              {{item?.title}}
-        </ion-label>
+          </ion-label>
         </ion-card-content>
       </ion-card>
     </ion-col>
-    </ion-row>
+    </ion-row> -->
   </ion-grid>
 </ion-content>
+
+<!-- <ion-header [translucent]="true" class="home-header">
+  <ion-toolbar>
+    <ion-avatar class="avatar" slot="start">
+      <img [src]="assetsUrl+'images/insurance-accident.jpg'">
+    </ion-avatar>
+    <ion-label class="username-title" >AMSA & MOI</ion-label>
+    <ion-label slot="end">
+      <ion-icon class="notif-icon" name="notifications" ios="notifications-outline"></ion-icon>
+
+    </ion-label>
+  </ion-toolbar>
+</ion-header>
+<ion-content page-home color="primary">
+  <ion-grid class="main-container ion-no-padding" header-section>
+    <ion-toolbar class="navigation-segment">
+      <ion-segment value="1" color="secondary" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="1">
+          <ion-label>Menu</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          <ion-label>Produits</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+    <ion-row class="title-separator">
+      <ion-label></ion-label>
+    </ion-row>
+    <ion-row card-section justify-content-around class="first-row" *ngIf="titleMenu == 1">
+      <ion-col size="12" *ngFor="let item of homeMenus" class="ion-no-padding">
+        <ion-card class="card ion-no-padding ion-no-margin" [routerLink]="item?.path" fixed >
+          <ion-card-header class="ion-no-padding">
+            <ion-item lines="full" class="in-no-padding">
+              <ion-avatar class="avatar" slot="start">
+                <img [src]="item?.icon">
+              </ion-avatar>
+              <ion-label class="label ion-text-wrap">
+                 {{item?.title}}
+              </ion-label>
+              <ion-icon color="secondary" class="forward-icon" slot="end" name="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row card-section justify-content-around class="first-row second" *ngIf="titleMenu == 2">
+      <ion-col size="12" *ngFor="let item of sinsitreMenus" class="ion-no-padding">
+        <ion-row class="title-separator" *ngIf="item.type == 'main'">
+          <ion-label color="primary">{{item?.title}}</ion-label>
+        </ion-row>
+        <ion-card class="card ion-no-padding ion-no-margin" [routerLink]="item?.path" fixed *ngIf="item.type != 'main'">
+          <ion-card-header class="ion-no-padding">
+            <ion-item lines="full" class="in-no-padding">
+              <ion-avatar class="avatar" slot="start">
+                <img [src]="item?.icon">
+              </ion-avatar>
+              <ion-label class="label ion-text-wrap">
+                 {{item?.title}}
+              </ion-label>
+              <ion-icon color="secondary" class="forward-icon" slot="end" name="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+            </ion-item>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content> -->

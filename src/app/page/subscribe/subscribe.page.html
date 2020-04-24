@@ -18,10 +18,10 @@
         <ion-slide>
           <ion-grid card-section>
             <ion-row class="title-main formule">
-              <ion-label> <span class="badge">1</span> Veuillez choisir une formule</ion-label>
+              <ion-label> <span class="badge">1</span> Veuillez choisir un pack</ion-label>
             </ion-row>
             <ion-row justify-content-center class="first-row">
-              <ion-col size="12" *ngFor="let item of formules">
+              <!-- <ion-col size="12" *ngFor="let item of formules">
                   <ion-item lines="none" class="ion-align-items-center card-item"  [class.active]="souscriptionForm.get('formule').value == item.id" (click)="selectFormule(item)">
                         <ion-avatar slot="start" class="avatar">
                           <img [src]="assetsUrl+'images/stethoscope.png'">
@@ -32,13 +32,35 @@
                         </ion-label>
                         <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="primary"></ion-icon>
                   </ion-item>
+              </ion-col> -->
+              <ion-col size="12">
+                  <ion-item lines="none" class="ion-align-items-center card-item"  [class.active]="souscriptionForm.get('formule').value == 'iart'" (click)="selectFormule('iart')">
+                        <ion-avatar slot="start" class="avatar">
+                          <img [src]="assetsUrl+'images/stethoscope.png'">
+                        </ion-avatar>
+                        <ion-label class="w-100">
+                          <b> IART </b>
+                        </ion-label>
+                        <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="secondary"></ion-icon>
+                  </ion-item>
+              </ion-col>
+              <ion-col size="12">
+                  <ion-item lines="none" class="ion-align-items-center card-item"  [class.active]="souscriptionForm.get('formule').value == 'vie'" (click)="selectFormule('vie')">
+                        <ion-avatar slot="start" class="avatar">
+                          <img [src]="assetsUrl+'images/stethoscope.png'">
+                        </ion-avatar>
+                        <ion-label class="w-100">
+                          <b> Assurance vie </b>
+                        </ion-label>
+                        <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="secondary"></ion-icon>
+                  </ion-item>
               </ion-col>
             </ion-row>
-            <ion-row  class="title-main formule" *ngIf="avalaibleDuration?.length > 0">
-              <ion-label class="text-left"><span class="badge">2</span>Veuillez choisir une  durée</ion-label>
+            <ion-row  class="title-main formule" >
+              <ion-label class="text-left"><span class="badge">2</span>Veuillez choisir un sous pack</ion-label>
             </ion-row>
-            <ion-row justify-content-around class="first-row" *ngIf="avalaibleDuration?.length > 0">
-              <ion-col size="12" *ngFor="let item of avalaibleDuration">
+            <ion-row justify-content-around class="first-row">
+              <!-- <ion-col size="12" *ngFor="let item of avalaibleDuration">
                   <ion-item  [class.active]="souscriptionForm.get('duree').value == item.id" (click)="selectDuration(item)" lines="none" class="ion-align-items-center card-item">
                       <ion-avatar slot="start" class="avatar">
                         <img [src]="assetsUrl+'images/calendar.png'">
@@ -48,7 +70,40 @@
                          <b>Montant: {{item?.price | number}}</b>
                        </ion-label>
                        <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="primary"></ion-icon>
-                      </ion-item>
+                  </ion-item>
+              </ion-col> -->
+              <ion-col size="12">
+                  <ion-item  lines="none" class="ion-align-items-center card-item">
+                      <ion-avatar slot="start" class="avatar">
+                        <img [src]="assetsUrl+'images/calendar.png'">
+                      </ion-avatar>
+                      <ion-label class="label w-100">
+                         <p>Décès</p>
+                       </ion-label>
+                       <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="secondary"></ion-icon>
+                  </ion-item>
+              </ion-col>
+              <ion-col size="12">
+                  <ion-item  lines="none" class="ion-align-items-center card-item">
+                      <ion-avatar slot="start" class="avatar">
+                        <img [src]="assetsUrl+'images/calendar.png'">
+                      </ion-avatar>
+                      <ion-label class="label w-100">
+                         <p>Retraite</p>
+                       </ion-label>
+                       <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="secondary"></ion-icon>
+                  </ion-item>
+              </ion-col>
+              <ion-col size="12">
+                  <ion-item  lines="none" class="ion-align-items-center card-item">
+                      <ion-avatar slot="start" class="avatar">
+                        <img [src]="assetsUrl+'images/calendar.png'">
+                      </ion-avatar>
+                      <ion-label class="label w-100">
+                         <p>Epargne</p>
+                       </ion-label>
+                       <ion-icon name="chevron-forward" ios="chevron-forward-outline" slot="end" color="secondary"></ion-icon>
+                  </ion-item>
               </ion-col>
             </ion-row>
             <ion-list class="bg-transparent">
@@ -185,6 +240,22 @@
                 <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Terminer</ion-button>
               </ion-row>
           </div>
+        </ion-slide>
+        <ion-slide>
+          <ion-grid>
+          <ion-row class="title-label">
+            <ion-label class="text-center">
+              Choisir un moyen de paiement
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="payment-section" *ngFor="let img of listImg">
+              <div>
+                <img [src]="img" alt="">
+              </div>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
         </ion-slide>
       </ion-slides>
     </form>

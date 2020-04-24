@@ -1,0 +1,209 @@
+<ion-header class="header" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button *ngIf="slideActiveIndex == 0"></ion-menu-button>
+      <ion-icon class="back-prev-btn" *ngIf="slideActiveIndex > 0" md="chevron-back" ios="chevron-back-outline" (click)="prevSlide()"></ion-icon>
+    </ion-buttons>
+    <ion-title class="page-title">Tarificateur</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <div class="loader-content" *ngIf="sendingRequest">
+    <ion-spinner name="crescent" class="loader"></ion-spinner>
+  </div>
+  <ion-grid class="main-container ion-padding">
+    <form class="w-100" [formGroup]="souscriptionForm">
+      <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
+        <ion-slide>
+          <div class="slide-form w-100" formGroupName="souscripteur">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left ">
+                Pack
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+                <ion-select class="npl" placeholder="Choisir un pack">
+                  <ion-select-option value="IART">IART</ion-select-option>
+                  <ion-select-option value="gaucher">Assurance vie</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-select class="npl"  placeholder="Choisir un sous pack">
+                  <ion-select-option value="IART">IART</ion-select-option>
+                  <ion-select-option value="gaucher">Assurance vie</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-select class="npl"  placeholder="Qualité souscripteur">
+                  <ion-select-option value="IART">Locataire</ion-select-option>
+                  <ion-select-option value="gaucher">Propriétaire</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-input type="tex" placeholder="Valeur du batiment" ></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-input type="tex" placeholder="Valeur du batiment" ></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-input type="tex" placeholder="Nbre de personne dans la fmaille" ></ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+            </ion-row>
+          </div>
+
+        </ion-slide>
+        <ion-slide >
+          <div class="slide-form w-100" formGroupName="souscripteur">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left ">
+                Information de la voiture
+              </ion-label>
+            </ion-row>
+
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Valeur à neuf" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Valeur vénal" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-select class="npl"  placeholder="Marque">
+                  <ion-select-option value="IART">Locataire</ion-select-option>
+                  <ion-select-option value="gaucher">Propriétaire</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+                <ion-select class="npl"  placeholder="Modèle">
+                  <ion-select-option value="IART">Locataire</ion-select-option>
+                  <ion-select-option value="gaucher">Propriétaire</ion-select-option>
+                </ion-select>
+            </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="email" placeholder="Matricule" formControlName="email"></ion-input>
+            </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Puissance" formControlName="numeroCni"></ion-input>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-input type="number" placeholder="Nombre de place" formControlName="numeroCni"></ion-input>
+               </ion-item>
+              <!-- <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item> -->
+
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+              </ion-row>
+          </div>
+        </ion-slide>
+        <ion-slide >
+          <div class="slide-form w-100" formGroupName="assure">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left ">
+                Information du contrat
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+               <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de mise en circulation" formControlName="dateNaissance"></ion-datetime>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Effet" formControlName="dateNaissance"></ion-datetime>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Echeance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+            <!-- <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
+             </ion-item>
+              <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+               <ion-item class="custom-input" lines="none">
+                 <ion-select class="npl" placeholder="Genre" formControlName="genre">
+                   <ion-select-option value="f">Féminin</ion-select-option>
+                   <ion-select-option value="m">Masculin</ion-select-option>
+                 </ion-select>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+                <ion-select class="npl" placeholder="Latéralité" formControlName="lateralite">
+                  <ion-select-option value="droitier">Droitier</ion-select-option>
+                  <ion-select-option value="gaucher">Gaucher</ion-select-option>
+                </ion-select>
+             </ion-item> -->
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Suivant</ion-button>
+              </ion-row>
+          </div>
+        </ion-slide>
+        <ion-slide >
+          <div class="slide-form w-100" formGroupName="beneficiaire">
+            <ion-row class="w-100 title-label">
+              <ion-label class="text-left">
+                Bénéficiaire
+              </ion-label>
+            </ion-row>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="tex" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="number" placeholder="Numéro de téléphone" formControlName="numeroTelephone"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-input type="number" placeholder="Numéro CNI" formControlName="numeroCni"></ion-input>
+              </ion-item>
+              <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Adresse" formControlName="adresse"></ion-input>
+             </ion-item>
+              <ion-item class="custom-input" lines="none">
+                 <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date de naissance" formControlName="dateNaissance"></ion-datetime>
+               </ion-item>
+               <ion-item class="custom-input" lines="none">
+                 <ion-select class="npl" placeholder="Genre" formControlName="genre">
+                   <ion-select-option value="f">Féminin</ion-select-option>
+                   <ion-select-option value="m">Masculin</ion-select-option>
+                 </ion-select>
+              </ion-item>
+              <ion-row>
+                <ion-button class="next-btn" color="primary" expand="full" (click)="nextSlide()">Terminer</ion-button>
+              </ion-row>
+          </div>
+        </ion-slide>
+        <ion-slide>
+          <ion-grid>
+          <ion-row class="title-label">
+            <ion-label class="text-center">
+              Choisir un moyen de paiement
+            </ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="payment-section" *ngFor="let img of listImg">
+              <div>
+                <img [src]="img" alt="">
+              </div>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+        </ion-slide>
+      </ion-slides>
+    </form>
+  </ion-grid>
+</ion-content>

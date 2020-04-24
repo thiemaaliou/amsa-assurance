@@ -36,9 +36,11 @@ export const  constData = {
     },
     slideHome: {
       initialSlide: 0,
-      slidesPerView: 1.3,
+      slidesPerView: 4,
       autoplay: true,
-      spaceBetween: 10
+      spaceBetween: 10,
+      speed: 1000,
+      pager: false
     },
     formules: [
       {

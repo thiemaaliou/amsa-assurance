@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { OnboardPage } from './onboard.page';
-import { OnboardPageRoutingModule } from './onboard-routing.module';
+
+import { TarificateurPageRoutingModule } from './tarificateur-routing.module';
+
+import { TarificateurPage } from './tarificateur.page';
 
 @NgModule({
   imports: [
@@ -12,8 +14,8 @@ import { OnboardPageRoutingModule } from './onboard-routing.module';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    OnboardPageRoutingModule
+    TarificateurPageRoutingModule
   ],
-  declarations: [OnboardPage]
+  declarations: [TarificateurPage]
 })
-export class OnboardPageModule {}
+export class TarificateurPageModule {}

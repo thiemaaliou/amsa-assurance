@@ -11,11 +11,11 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 
 @Component({
-  selector: 'app-subscribe',
-  templateUrl: './subscribe.page.html',
-  styleUrls: ['./subscribe.page.scss'],
+  selector: 'app-tarificateur',
+  templateUrl: './tarificateur.page.html',
+  styleUrls: ['./tarificateur.page.scss'],
 })
-export class SubscribePage implements OnInit {
+export class TarificateurPage implements OnInit {
   @ViewChild('onBoardSlide', {static: false}) onBoardSlide: IonSlides;
   @ViewChild(IonContent, {static: false}) ionContent: IonContent;
   customPickerOptions: any;
@@ -191,8 +191,8 @@ export class SubscribePage implements OnInit {
   }
 
   selectFormule(item){
-    let duree = this.durees.filter((d) => d.formule.id == item);
-    this.souscriptionForm.get('formule').setValue(item);
+    let duree = this.durees.filter((d) => d.formule.id == item.id);
+    this.souscriptionForm.get('formule').setValue(item.id);
 
     if(duree){
       this.avalaibleDuration = duree;

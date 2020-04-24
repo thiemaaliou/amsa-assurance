@@ -62,8 +62,11 @@
 .custom-alert .alert-button .alert-button-inner{
   justify-content: center !important;
 }
-ion-header ion-toolbar:first-of-type{
+ion-header:not(.home-header) ion-toolbar:first-of-type{
   height: 60px !important;
+}
+ion-header.home-header ion-toolbar:first-of-type{
+  min-height: 100px !important;
 }
 ion-header{
   z-index: 1 !important;
@@ -72,10 +75,10 @@ ion-content{
   z-index: 10 !important;
 }
 
-ion-content{
+/* ion-content{
   background: #5185f6;
   --background:  #5185f6;
-}
+} */
 .main-container{
   background: #fff;
   min-height: calc(100% + 60px);
@@ -112,4 +115,7 @@ ion-content{
 }
 .back-btn{
   font-size: 1.8em;
+}
+.text-right{
+  text-align: right;
 }

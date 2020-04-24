@@ -1,21 +1,54 @@
 <ion-content page-onboard fullscreen class="ion-padding" scroll-y="false">
-  <ion-label class="skip-text" color="secondary" (click)="skipSlide()">
-    Passer
-  </ion-label>
-  <ion-slides [options]="data?.slideOptsOne" #onBoardSlide>
-
-      <ion-slide *ngFor="let slide of [0,1,2]">
+  <ion-slides [options]="data?.slideOptsOne" (ionSlideWillChange)="slideChanged($event)" #onBoardSlide>
+    <ion-slide>
+      <div class="slide">
+          <img class="img" src="../../../assets/images/insurance-residence.jpg" alt="Home Insurance" />
+          <h2 class="title" color="primary">Bienvenue chez la famille ASMA</h2>
+          <p class="description" color="secondary">Gérer vos assurances partout</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide">
+          <img class="img" src="../../../assets/images/pack-insurance.PNG" alt="Home Insurance" />
+          <h2 class="title" color="primary">Faisons d'abord connaissance</h2>
+          <p class="description" color="secondary">C'est important pour nous de connaître nos cients</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide">
+        <ion-grid class="main-container home">
+          <form class="slide-form home w-100 ion-padding" [formGroup]="returnmentForm">
+            <img class="img" src="../../../assets/images/insurance-accident.jpg" alt="Home Insurance" />
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Prénom" formControlName="prenom"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                <ion-input type="text" placeholder="Nom" formControlName="nom"></ion-input>
+              </ion-item>
+             <ion-item class="custom-input" lines="none">
+                 <ion-input type="number" placeholder="Téléphone" formControlName="telephone"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+                 <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+             </ion-item>
+            <ion-row>
+              <ion-button class="next-btn" [disabled]="returnmentForm.invalid" (click)="saveData()" color="primary" expand="full" >Envoyer</ion-button>
+            </ion-row>
+          </form>
+        </ion-grid>
+      </div>
+    </ion-slide>
+      <!-- <ion-slide *ngFor="let slide of [0,1,2]">
         <div class="slide">
-            <img class="img" [src]="data?.slidesItems?.images[slide]" alt=""/>
-            <h2 class="title">{{data?.slidesItems?.title[slide]}}</h2>
+            <img class="img" [src]="data?.slidesItems?.images[slide]" alt="" />
+            <h2 class="title" color="primary">{{data?.slidesItems?.title[slide]}}</h2>
             <p class="description">{{data?.slidesItems?.description[slide]}}</p>
         </div>
-      </ion-slide>
+      </ion-slide> -->
     </ion-slides>
-    <ion-fab class="fab-bottom" horizontal="center" vertical="bottom" slot="fixed" edge (click)="nextSlide()">
+    <ion-fab class="fab-bottom" horizontal="center" vertical="bottom" slot="fixed" edge (click)="nextSlide()" *ngIf="slideIndex < 2">
       <ion-fab-button color="secondary">
-        <!-- <ion-icon md="caret-back" ios="chevron-back-circle-outline"></ion-icon> -->
-        <ion-icon md="chevron-forward" ios="chevron-forward-outline"></ion-icon>
+        <ion-icon md="arrow-forward" ios="arrow-forward-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
 </ion-content>

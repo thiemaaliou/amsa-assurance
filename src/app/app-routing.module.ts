@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'faq',
     loadChildren: () => import('./page/faq/faq.module').then( m => m.FaqPageModule)
+  },
+  {
+    path: 'tarificateur',
+    loadChildren: () => import('./page/tarificateur/tarificateur.module').then( m => m.TarificateurPageModule)
   }
 
 ];

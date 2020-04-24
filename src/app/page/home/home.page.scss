@@ -1,3 +1,35 @@
+.p-slide{
+  .img-row{
+    height: 50px;
+    overflow: hidden;
+    text-align: center;
+    img{
+      margin: auto;
+    }
+  }
+  .img-title{
+    padding: 10px 0 20px;
+    ion-label{
+      margin: 0;
+      width: 100%;
+      font-size: 13px;
+    }
+  }
+}
+.home-header ion-toolbar{
+  padding: 1em 0px 1em;
+  ion-avatar{
+    padding: 4px;
+    border: 2px dashed #f4f4f4;
+    margin-right: 20px;
+  }
+  .username-title{
+    font-size: 1.5em;
+  }
+  .notif-icon{
+    font-size: 1.6em;
+  }
+}
 [page-home]{
   .slide-one{
     height: 100px;
@@ -68,7 +100,7 @@
           padding: 10px;
             .avatar{
               margin: 0 auto;
-              background: #f4f4f4;
+              background: #fed217;
               padding: 14px;
               width: 50px;
               height: 50px;
@@ -77,9 +109,156 @@
                 }
             }
             .label{
-              font-size: 1em;
-              color: #0008;
+              font-size: 1.2em;
+              color: #000;
             }
         }
     }
 }
+.main-container{
+  border-radius: 0;
+}
+.our-product{
+    height: 44px;
+    line-height: 40px;
+    border-bottom: 1px solid #b3acac55;
+}
+.my-insurance{
+  height: auto !important;
+  ion-label{
+    margin-left: 20px;
+  }
+}
+
+
+// .home-header ion-toolbar{
+//   padding: 2em 26px 1em;
+//   ion-avatar{
+//     padding: 4px;
+//     border: 2px dashed #f4f4f4;
+//     margin-right: 20px;
+//   }
+//   .username-title{
+//     font-size: 1.5em;
+//   }
+//   .notif-icon{
+//     font-size: 1.6em;
+//   }
+// }
+// [page-home]{
+//   .navigation-segment{
+//     --background: #fff;
+//     box-shadow: 1px 0px 8px #ccc;
+//     height: 55px;
+//     ion-segment-button{
+//       max-height: 55px;
+//     }
+//
+//   }
+//
+//   .title-separator{
+//       padding: 15px 25px;
+//   }
+//   .row-slide{
+//     background: #5185f6;
+//     margin-bottom: 15px;
+//     margin-top: -20px;
+//   }
+//   ion-item{
+//     --inner-padding-start: 0;
+//     --padding-start: 5px;
+//     --padding-end: 5px;
+//     --inner-padding-end: 0;
+//     height: 4em;
+//     --min-height: 3.9em;
+//   }
+//   // .slide-one{
+//   //   background-image: url('../../../assets/images/pack-insurance.PNG');
+//   //   text-align: center;
+//   //   background-position: center;
+//   //   background-size: 100%;
+//   //   border-radius: 5px;
+//   //   .slide{
+//   //     height: 100%;
+//   //     width: 100%;
+//   //     background: #000000c9;
+//   //     border-radius: 5px;
+//   //     color: #f1f1f1;
+//   //     text-align: left;
+//   //     padding: 10px;
+//   //     .title{
+//   //       font-size: 14px;
+//   //       margin: 0 !important;
+//   //       border-bottom: 1px solid #ffffff4f;
+//   //     }
+//   //     .description{
+//   //       font-size: 12px;
+//   //       margin-bottom: 0;
+//   //     }
+//   //   }
+//   // }
+//   .header-md:after {
+//     background-image: none;
+//   }
+//     [header-section]{
+//         background: #f7f7f7f5;
+//
+//         [item-user]{
+//             --background: none;
+//             padding-top: 30px;
+//             .avatar-user {
+//                 border: 2px solid #fff;
+//                 background: #aaa;
+//                 height: 64px;
+//                 width: 64px;
+//             }
+//             .img-item {
+//                 border-radius: 50%;
+//                 border: 1px solid #ccc;
+//                 background: #d469d075;
+//             }
+//         }
+//         [item-service]{
+//             --background: none;
+//             padding-top: 10px;
+//             ion-row{
+//                 width: 100%;
+//             }
+//             .avatar-service{
+//                 height: 45px;
+//                 width: 45px;
+//                 border: 2px solid #fff;
+//                 background: #aaa;
+//                 border-radius: 45px;
+//                 border: 1px solid #ccc;
+//                 background: #d469d075;
+//             }
+//         }
+//
+//     }
+//
+//     [card-section]{
+//         .card{
+//           box-shadow: 0px 0px 10px #cccccc40;
+//           border-radius: 0;
+//           padding: 0;
+//           .forward-icon{
+//             color: #c9c6c6;
+//           }
+//             .avatar{
+//               margin: 0 5px 0 18px;;
+//               background: #f4f4f4;
+//               padding: 6px;
+//               width: 38px;
+//               height: 38px;
+//                 img{
+//                   border-radius: 0;
+//                 }
+//             }
+//             .label{
+//               font-size: 1em;
+//               color: #0008;
+//             }
+//         }
+//     }
+// }
