@@ -1,0 +1,26 @@
+.title{
+  height: 40px;
+  ion-label{
+    margin: 0 auto auto auto;
+  }
+}
+.add-img{
+  ion-icon{
+    font-size: 3em;
+    color: #999;
+    padding: 15px 29px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+  }
+  ion-label{
+    font-size: 12px;
+  }
+}
+.slide-form{
+  ion-row{
+    margin-top: 20px;
+  }
+  img{
+    height: 84px;
+  }
+}

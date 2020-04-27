@@ -2,22 +2,24 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <div class="user-header">
-          <ion-avatar class="avatar">
-            <img [src]="assetsUrl+'images/stethoscope.png'">
-          </ion-avatar>
-          <ion-label class="username-title" [routerLink]="'/home'">Seydina Alioune</ion-label>
-        </div>
-
+        <ion-grid>
+          <ion-row class="user-header">
+            <ion-col size="12">
+              <img [src]="assetsUrl+'images/avatar.png'">
+            </ion-col>
+            <ion-col size="12">
+              <ion-label class="username-title" [routerLink]="'/home'">Seydina Alioune</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-list id="inbox-list">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item class="item-menu" (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="route.url == p.url">
+            <ion-item detail  class="item-menu" (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="full" [class.selected]="route.url == p.url">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <ion-icon name="log-out" ios="log-out-outline" class="logout-icon" color="primary"></ion-icon>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

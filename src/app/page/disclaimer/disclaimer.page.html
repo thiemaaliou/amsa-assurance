@@ -8,25 +8,101 @@
 </ion-header>
 
 <ion-content class="content">
-  <ion-grid class="main-container ion-padding">
-    <form class="slide-form w-100" [formGroup]="sinistreForm">
+  <ion-slides>
+    <ion-slide>
+      <ion-grid class="main-container ion-padding">
+        <ion-row class="title">
+          <ion-label color="primary">Souscripteur Véhicule A</ion-label>
+        </ion-row>
+        <form class="slide-form w-100" [formGroup]="sinistreForm">
+          <ion-item class="custom-input" lines="none">
+             <ion-input type="text" placeholder="Nom" formControlName="numeroPolice"></ion-input>
+           </ion-item>
+           <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Prénom" formControlName="lieu"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Téléphone" formControlName="lieu"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Adresse" formControlName="lieu"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+             <ion-textarea type="text" placeholder="Description" formControlName="lieu"></ion-textarea>
+           </ion-item>
+          <ion-row>
+            <ion-button class="next-btn" color="primary" expand="full" >Suivant</ion-button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="main-container ion-padding">
+        <ion-row class="title">
+          <ion-label color="primary">Souscripteur Véhicule B</ion-label>
+        </ion-row>
+        <form class="slide-form w-100" [formGroup]="sinistreForm">
 
-      <ion-item class="custom-input" lines="none">
-         <ion-input type="text" placeholder="Numéro de la police" formControlName="numeroPolice"></ion-input>
-       </ion-item>
-       <ion-item class="custom-input" lines="none">
-          <ion-input type="text" placeholder="Lieu" formControlName="lieu"></ion-input>
-        </ion-item>
-        <ion-item class="custom-input" lines="none">
-         <ion-datetime class="npl" displayFormat="DD/MM/YYYY" placeholder="Date" formControlName="date"></ion-datetime>
-       </ion-item>
-       <ion-item class="custom-input" lines="none">
-        <ion-textarea class="npl" placeholder="Description" formControlName="description"></ion-textarea>
-      </ion-item>
+          <ion-item class="custom-input" lines="none">
+             <ion-input type="text" placeholder="Nom" formControlName="numeroPolice"></ion-input>
+           </ion-item>
+           <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Prénom" formControlName="lieu"></ion-input>
+            </ion-item>
+            <ion-item class="custom-input" lines="none">
+               <ion-input type="text" placeholder="Téléphone" formControlName="lieu"></ion-input>
+             </ion-item>
+             <ion-item class="custom-input" lines="none">
+              <ion-input type="text" placeholder="Adresse" formControlName="lieu"></ion-input>
+            </ion-item>
 
-      <ion-row>
-        <ion-button class="next-btn" [disabled]="sinistreForm.invalid" (click)="presentAlertConfirm()" color="primary" expand="full" >Enregistrer</ion-button>
-      </ion-row>
-    </form>
-  </ion-grid>
+          <ion-row>
+            <ion-button class="next-btn"  color="primary" expand="full" >Suivant</ion-button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid class="main-container ion-padding">
+        <ion-row class="title">
+          <ion-label color="primary">Pièces justificativess</ion-label>
+        </ion-row>
+        <form class="slide-form w-100">
+          <ion-row>
+            <ion-col size="4" class="add-img">
+              <ion-icon ios="camera-outline" name="camera"></ion-icon>
+              <ion-label>Ajouter des images</ion-label>
+            </ion-col>
+            <ion-col size="4">
+              <img src="../../../assets/images/accident1.jpeg" alt="">
+            </ion-col>
+            <ion-col size="4">
+              <img src="../../../assets/images/accident2.jpg" alt="">
+            </ion-col>
+            <ion-col size="4" class="add-img">
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="add-img">
+              <ion-icon ios="receipt-outline" name="receipt"></ion-icon>
+              <ion-label>Signatures</ion-label>
+            </ion-col>
+            <ion-col size="4">
+              <img src="../../../assets/images/signature1.jpg" alt="">
+              <ion-label>Persone A</ion-label>
+            </ion-col>
+            <ion-col size="4">
+              <img src="../../../assets/images/signature2.png" alt="">
+                <ion-label>Persone B</ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-button class="next-btn"  color="primary" expand="full" >Envoyer</ion-button>
+          </ion-row>
+        </form>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>
